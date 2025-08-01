@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manju - A Beautiful Soul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 192, 203, 0.5);
+      color: white;
+      font-family: 'Pacifico', cursive;
+      position: relative;
+    }
+
+    #playButton {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: deeppink;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 1rem 0;
+    }
+
+    nav a {
+      margin: 0 20px;
+      color: deeppink;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-shadow: 0px 0px 5px deeppink;
+    }
+
+    .section {
+      display: none;
+      max-width: 800px;
+      margin: 2rem auto;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 2rem;
+      border-radius: 20px;
+      animation: fadeIn 0.8s;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h2 {
+      color: deeppink;
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .gallery img {
+      max-width: 200px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+      animation: float 10s linear infinite;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    .message {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Manju - A Beautiful Soul</h1>
+    <p>A tribute to someone truly special</p>
+    <button id="playButton">Play Music 🎵</button>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showSection('about')">About Her</a>
+    <a href="#" onclick="showSection('photos')">Frozen Smiles</a>
+  </nav>
+
+  <div id="about" class="section active">
+    <h2>About Manju</h2>
+    <p>I first met Manju in the most unexpected way — through Free Fire. What began as a simple game quickly turned into something so much more special. Over time, she has become the most important person in my life.</p>
+    <p>These days, I barely play the game — and when I do, it's only with her. Beyond the game, we talk almost every day on Instagram. Her energy is unmatched — she's always positive, always smiling, and that smile... it lights up my world.</p>
+    <p>Every time I talk to her, my heart feels like it’s bursting with joy. She's not just gorgeous on the outside — she has a soul that radiates kindness, strength, and peace. This page is a tribute to her smile, her spirit, and the way she makes life feel brighter.</p>
+  </div>
+
+  <div id="photos" class="section">
+    <h2>Frozen Smiles</h2>
+    <div class="gallery">
+      <img src="manju1.jpg" alt="Manju 1">
+      <img src="manju2.jpg" alt="Manju 2">
+      <img src="manju3.jpg" alt="Manju 3">
+    </div>
+  </div>
+
+  <div class="message">
+    <h2>Just for You, Manju</h2>
+    <p>No matter how far we are, you'll always be the calm in my storm, the smile that brightens my world. I may not say it often, but you mean more to me than words can ever express.</p>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="FIL.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    for (let i = 0; i < 25; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.background = i % 2 === 0 ? 'deeppink' : 'lightpink';
+      document.body.appendChild(heart);
+    }
+
+    document.getElementById('playButton').addEventListener('click', () => {
+      const music = document.getElementById('bgMusic');
+      music.play();
+    });
+  </script>
+</body>
+</html>
